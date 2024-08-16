@@ -6,8 +6,30 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #7ca8d0; /* Light blue background */
     padding: 20px;
+}
+
+.logo-container {
+    margin-bottom: 20px; /* Space between the logo and the title */
+}
+
+.logo {
+    display: block;
+    margin: 0 auto; /* Center the logo horizontally */
+    max-width: 100%; /* Ensure logo is responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.survey-title {
+    color: white; /* White color for the title */
+    background-color: #003366; /* Dark blue background for the title */
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px; /* Set a max width for the title */
+    margin-bottom: 20px; /* Space between the title and the form */
 }
 
 .survey-form {
@@ -23,24 +45,29 @@
     margin-bottom: 30px; /* Increased spacing between questions */
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
+.question-label {
+    color: #003366; /* Dark blue color for question labels */
     font-weight: bold;
 }
 
 .radio-group {
-    display: flex; /* Align radio buttons horizontally */
-    flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+    display: flex;
+    flex-direction: column; /* Align radio buttons vertically */
     margin-bottom: 8px;
 }
 
 .radio-group div {
-    margin-right: 20px; /* Spacing between radio button groups */
+    display: flex; /* Align radio buttons and labels horizontally */
+    align-items: center;
+    margin-bottom: 10px; /* Spacing between radio buttons */
 }
 
-input[type="radio"] {
-    margin-right: 8px;
+.radio-group input[type="radio"] {
+    margin-right: 8px; /* Space between radio button and label */
+}
+
+.radio-label {
+    color: #000000; /* Black color for radio button labels */
 }
 
 .submit-button {
