@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import ThankYouModal from './ThankYouModal'; // Import the modal component
 import './SurveyForm.css'; // Import the CSS file
-import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast
 
 const SurveyForm = ({ setResponses }) => {
     const [formData, setFormData] = useState({
@@ -17,6 +16,7 @@ const SurveyForm = ({ setResponses }) => {
         q9: '',
         q10: '',
     });
+    const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
     const navigate = useNavigate();
 
@@ -31,12 +31,51 @@ const SurveyForm = ({ setResponses }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setResponses(formData); // Store the responses in state
-        toast.success('Thank you for filling out our form!'); // Show success toast
+        setShowModal(true); // Show the modal
+        setFormData({
+            q1: '',
+            q2: '',
+            q3: '',
+            q4: '',
+            q5: '',
+            q6: '',
+            q7: '',
+            q8: '',
+            q9: '',
+            q10: '',
+        }); 
 
-        // Redirect to the summary page after 3 seconds
-        setTimeout(() => {
-            navigate('/admin');
-        }, 3000);
+        // Redirect to the summary page after 5 seconds
+        // setTimeout(() => {
+        //     setFormData({
+        //         q1: '',
+        //         q2: '',
+        //         q3: '',
+        //         q4: '',
+        //         q5: '',
+        //         q6: '',
+        //         q7: '',
+        //         q8: '',
+        //         q9: '',
+        //         q10: '',
+        //     }); // Clear form data
+        //     // navigate('/admin');
+        // }, 3000);
+    };
+
+    const handleClear = () => {
+        setFormData({
+            q1: '',
+            q2: '',
+            q3: '',
+            q4: '',
+            q5: '',
+            q6: '',
+            q7: '',
+            q8: '',
+            q9: '',
+            q10: '',
+        }); // Clear form data
     };
 
     const renderRadioButtons = (name, options) => {
@@ -70,6 +109,7 @@ const SurveyForm = ({ setResponses }) => {
             </div>
             <div className="survey-form">
                 <form onSubmit={handleSubmit}>
+                    {/* Questions and radio buttons as before */}
                     <div className="question">
                         <label className="question-label">
                             1. How satisfied are you with the variety of menu options available?
@@ -180,10 +220,13 @@ const SurveyForm = ({ setResponses }) => {
                         </div>
                     </div>
 
-                    <button type="submit" className="submit-button">Submit</button>
+                    <div className="button-container">
+                        <button type="submit" className="submit-button">Submit</button>
+                        <button type="button" className="clear-button" onClick={handleClear}>Clear</button>
+                    </div>
                 </form>
             </div>
-            <ToastContainer />
+            {showModal && <ThankYouModal onClose={() => setShowModal(false)} />}
         </div>
     );
 };

@@ -2,20 +2,41 @@ import React from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, BarElement, registerables } from 'chart.js';
 import './SummaryReport.css'; // Import the CSS file
+import { FaHome, FaChartPie, FaChartBar, FaCog } from 'react-icons/fa'; // Import icons
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, BarElement, ...registerables);
 
-const SummaryReport = ({ responses }) => {
+const questionLabels = {
+    q1: 'How satisfied are you with the variety of menu options available?',
+    q2: 'How would you rate the taste and quality of the food served?',
+    q3: 'How do you feel about the portion sizes of the meals provided?',
+    q4: 'How satisfied are you with the temperature at which your food is served?',
+    q5: 'How would you rate the cleanliness and hygiene of the dining area?',
+    q6: 'How do you feel about the friendliness and professionalism of the dining staff?',
+    q7: 'How would you rate the timeliness of the service provided?',
+    q8: 'How comfortable is the dining atmosphere in terms of noise levels and seating arrangements?',
+    q9: 'How satisfied are you with the availability of special dietary options, such as gluten-free or low-sodium meals?',
+    q10: 'How likely are you to recommend our dining services to other residents?'
+};
+
+// Dummy responses data
+const dummyResponses = {
+    q1: 'Very Satisfied',
+    q2: 'Good',
+    q3: 'Just Right',
+    q4: 'Satisfied',
+    q5: 'Good',
+    q6: 'Neutral',
+    q7: 'Good',
+    q8: 'Comfortable',
+    q9: 'Satisfied',
+    q10: 'Likely'
+};
+
+const SummaryReport = ({ responses = dummyResponses }) => {
     const generateSummary = (responses) => {
         const summary = {};
-        const options = [
-            'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissatisfied',
-            'Excellent', 'Good', 'Fair', 'Poor',
-            'Too Large', 'Just Right', 'Too Small',
-            'Very Comfortable', 'Comfortable', 'Neutral', 'Uncomfortable', 'Very Uncomfortable',
-            'Very Likely', 'Likely', 'Neutral', 'Unlikely', 'Very Unlikely'
-        ];
-
+        
         Object.keys(responses).forEach(question => {
             if (!summary[question]) {
                 summary[question] = {};
@@ -70,32 +91,44 @@ const SummaryReport = ({ responses }) => {
     });
 
     return (
-        <div className="summary-report">
-            <h1>Survey Summary Report</h1>
-            <div className="chart-container">
-                <h2>Pie Chart</h2>
-                <div className="chart">
-                    <Pie data={chartData(combinedSummary)} />
-                </div>
+        <div className="summary-container">
+            <div className="sidebar">
+                <nav>
+                    <ul>
+                        <li><FaHome /> <a href="/admin">Home</a></li>
+                        <li><FaChartPie /> <a href="/admin/summary">Summary</a></li>
+                        <li><FaChartBar /> <a href="/admin/reports">Reports</a></li>
+                        <li><FaCog /> <a href="/admin/settings">Settings</a></li>
+                    </ul>
+                </nav>
             </div>
-            <div className="chart-container">
-                <h2>Bar Chart</h2>
-                <div className="chart">
-                    <Bar data={chartData(combinedSummary)} />
+            <div className="main-content">
+                <h1>Survey Summary Report</h1>
+                <div className="chart-container">
+                    <h2>Pie Chart</h2>
+                    <div className="chart">
+                        <Pie data={chartData(combinedSummary)} />
+                    </div>
                 </div>
-            </div>
-            <div className="response-info-container">
-                <div className="response-info">
-                    {Object.keys(summary).map(questionKey => (
-                        <div key={questionKey} className="question-summary">
-                            <h2>Question {questionKey.replace('q', '')} Responses</h2>
-                            {Object.keys(summary[questionKey]).map(answer => (
-                                <p key={answer}>
-                                    {answer}: {summary[questionKey][answer]} response{summary[questionKey][answer] > 1 ? 's' : ''}
-                                </p>
-                            ))}
-                        </div>
-                    ))}
+                <div className="chart-container">
+                    <h2>Bar Chart</h2>
+                    <div className="chart">
+                        <Bar data={chartData(combinedSummary)} />
+                    </div>
+                </div>
+                <div className="response-info-container">
+                    <div className="response-info">
+                        {Object.keys(summary).map(questionKey => (
+                            <div key={questionKey} className="question-summary">
+                                <h2>Question {questionKey.replace('q', '')}: {questionLabels[questionKey]}</h2>
+                                {Object.keys(summary[questionKey]).map(answer => (
+                                    <p key={answer}>
+                                        {answer}: {summary[questionKey][answer]} response{summary[questionKey][answer] > 1 ? 's' : ''}
+                                    </p>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
