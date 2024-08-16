@@ -1,0 +1,28 @@
+/* SummaryReport.css */
+
+.summary-report {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.chart {
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.chart canvas {
+    max-width: 100% !important;
+    height: auto !important;
+}

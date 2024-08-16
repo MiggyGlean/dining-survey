@@ -1,0 +1,58 @@
+/* SurveyForm.css */
+
+.survey-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.survey-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.question {
+    margin-bottom: 30px; /* Increased spacing between questions */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.radio-group {
+    display: flex; /* Align radio buttons horizontally */
+    flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+    margin-bottom: 8px;
+}
+
+.radio-group div {
+    margin-right: 20px; /* Spacing between radio button groups */
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
