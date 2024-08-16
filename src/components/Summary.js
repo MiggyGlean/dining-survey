@@ -1,4 +1,3 @@
-// Summary.js
 import React from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, BarElement, registerables } from 'chart.js';
@@ -21,51 +20,26 @@ const questionLabels = {
 };
 
 // Dummy data for responses
-const dummyResponses = {
-    q1: 'Very Satisfied',
-    q2: 'Good',
-    q3: 'Just Right',
-    q4: 'Satisfied',
-    q5: 'Good',
-    q6: 'Neutral',
-    q7: 'Good',
-    q8: 'Comfortable',
-    q9: 'Satisfied',
-    q10: 'Likely',
-    q1: 'Satisfied',
-    q2: 'Good',
-    q3: 'Just Right',
-    q4: 'Very Satisfied',
-    q5: 'Good',
-    q6: 'Neutral',
-    q7: 'Good',
-    q8: 'Comfortable',
-    q9: 'Very Satisfied',
-    q10: 'Likely',
-    q1: 'Very Satisfied',
-    q2: 'Good',
-    q3: 'Just Right',
-    q4: 'Satisfied',
-    q5: 'Neutral',
-    q6: 'Neutral',
-    q7: 'Good',
-    q8: 'Comfortable',
-    q9: 'Satisfied',
-    q10: 'Likely',
-};
+const dummyResponses = [
+    { q1: 'Very Satisfied', q2: 'Good', q3: 'Just Right', q4: 'Satisfied', q5: 'Good', q6: 'Neutral', q7: 'Good', q8: 'Comfortable', q9: 'Satisfied', q10: 'Likely' },
+    { q1: 'Satisfied', q2: 'Good', q3: 'Just Right', q4: 'Very Satisfied', q5: 'Good', q6: 'Neutral', q7: 'Good', q8: 'Comfortable', q9: 'Very Satisfied', q10: 'Likely' },
+    { q1: 'Very Satisfied', q2: 'Good', q3: 'Just Right', q4: 'Satisfied', q5: 'Neutral', q6: 'Neutral', q7: 'Good', q8: 'Comfortable', q9: 'Satisfied', q10: 'Likely' }
+];
 
 // Helper function to generate summary data
 const generateSummary = (responses) => {
     const summary = {};
 
-    Object.keys(responses).forEach(question => {
-        if (!summary[question]) {
-            summary[question] = {};
-        }
-        const answer = responses[question];
-        if (answer) {
-            summary[question][answer] = (summary[question][answer] || 0) + 1;
-        }
+    responses.forEach(response => {
+        Object.keys(response).forEach(question => {
+            if (!summary[question]) {
+                summary[question] = {};
+            }
+            const answer = response[question];
+            if (answer) {
+                summary[question][answer] = (summary[question][answer] || 0) + 1;
+            }
+        });
     });
 
     return summary;
