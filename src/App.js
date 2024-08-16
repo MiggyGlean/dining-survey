@@ -10,7 +10,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<SurveyForm setResponses={setResponses} />} />
-                <Route path="/summary" element={<SummaryReport responses={responses} />} />
+                <Route path="/admin" element={<SummaryReport responses={responses} />} />
             </Routes>
         </Router>
     );

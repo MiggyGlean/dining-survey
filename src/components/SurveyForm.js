@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import './SurveyForm.css'; // Import the CSS file
 import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast
 
 const SurveyForm = ({ setResponses }) => {
@@ -30,11 +31,11 @@ const SurveyForm = ({ setResponses }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setResponses(formData); // Store the responses in state
-        toast.success('Thank you for submitting the survey!'); // Show success toast
+        toast.success('Thank you for filling out our form!'); // Show success toast
 
         // Redirect to the summary page after 3 seconds
         setTimeout(() => {
-            navigate('/summary');
+            navigate('/admin');
         }, 3000);
     };
 

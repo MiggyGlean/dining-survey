@@ -23,51 +23,61 @@
 
 .survey-title {
     color: white; /* White color for the title */
-    background-color: #003366; /* Dark blue background for the title */
-    padding: 15px;
+    background-color: #7ca8d0; /* Dark blue background for the title */
+    padding: 20px;
     text-align: center;
     border-radius: 5px;
     width: 100%;
-    max-width: 600px; /* Set a max width for the title */
-    margin-bottom: 20px; /* Space between the title and the form */
+    max-width: 600px; /* Optional: Set a max width for the title */
+    margin-bottom: 30px; /* Space between the title and the form */
+    font-size: 40px; /* Increase font size for the title */
 }
 
 .survey-form {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 30px; /* Increased padding for better spacing */
     width: 100%;
     max-width: 600px;
+    font-size: 18px; /* Increase base font size for form elements */
 }
 
 .question {
-    margin-bottom: 30px; /* Increased spacing between questions */
+    margin-bottom: 40px; /* Increased spacing between questions */
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 20px; /* Larger font size for question labels */
 }
 
 .question-label {
     color: #003366; /* Dark blue color for question labels */
-    font-weight: bold;
 }
 
 .radio-group {
     display: flex;
     flex-direction: column; /* Align radio buttons vertically */
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .radio-group div {
     display: flex; /* Align radio buttons and labels horizontally */
     align-items: center;
-    margin-bottom: 10px; /* Spacing between radio buttons */
+    margin-bottom: 15px; /* Spacing between radio buttons */
 }
 
 .radio-group input[type="radio"] {
-    margin-right: 8px; /* Space between radio button and label */
+    margin-right: 12px; /* Space between radio button and label */
+    transform: scale(1.2); /* Increase the size of radio buttons */
 }
 
 .radio-label {
     color: #000000; /* Black color for radio button labels */
+    font-size: 18px; /* Larger font size for radio button labels */
 }
 
 .submit-button {
@@ -75,8 +85,8 @@
     border: none;
     border-radius: 4px;
     color: white;
-    font-size: 16px;
-    padding: 10px 20px;
+    font-size: 18px; /* Larger font size for button text */
+    padding: 15px 25px; /* Larger padding for the button */
     cursor: pointer;
 }
 

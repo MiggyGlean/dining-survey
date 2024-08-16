@@ -84,6 +84,20 @@ const SummaryReport = ({ responses }) => {
                     <Bar data={chartData(combinedSummary)} />
                 </div>
             </div>
+            <div className="response-info-container">
+                <div className="response-info">
+                    {Object.keys(summary).map(questionKey => (
+                        <div key={questionKey} className="question-summary">
+                            <h2>Question {questionKey.replace('q', '')} Responses</h2>
+                            {Object.keys(summary[questionKey]).map(answer => (
+                                <p key={answer}>
+                                    {answer}: {summary[questionKey][answer]} response{summary[questionKey][answer] > 1 ? 's' : ''}
+                                </p>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
