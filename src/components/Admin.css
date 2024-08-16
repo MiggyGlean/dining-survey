@@ -5,11 +5,12 @@
     display: flex;
     height: 100vh; /* Full height of the viewport */
     overflow: hidden; /* Prevent overflow from sidebar */
+    font-family: Arial, sans-serif; /* Use a modern and clean font */
 }
 
 /* Sidebar styling */
 .sidebar {
-    width: 280px; /* Increased width for better navigation space */
+    width: 280px; /* Width of the sidebar */
     background-color: #f8f9fa; /* Light grey background for better contrast */
     padding: 20px; /* Padding inside the sidebar */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
@@ -18,6 +19,7 @@
     position: fixed; /* Fix the sidebar to the left side */
     height: 100%; /* Full height of the viewport */
     overflow-y: auto; /* Scroll if content overflows */
+    z-index: 100; /* Ensure sidebar is above other content */
 }
 
 /* Logo styling */
@@ -47,15 +49,19 @@ nav ul li a {
     color: #343a40; /* Darker color for better readability */
     font-size: 18px; /* Slightly larger font size */
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center align items */
+    padding: 10px; /* Padding for better touch targets */
+    border-radius: 5px; /* Rounded corners for a modern look */
 }
 
 nav ul li a:hover {
     color: #007bff; /* Change color on hover */
+    background-color: #e9ecef; /* Background color on hover */
 }
 
 nav ul li svg {
-    margin-right: 12px; /* Slightly larger space between icon and text */
+    margin-right: 12px; /* Space between icon and text */
+    vertical-align: middle; /* Align icon with text */
 }
 
 /* Main content styling */
@@ -63,21 +69,48 @@ nav ul li svg {
     flex: 1;
     padding: 20px; /* Padding around the main content */
     background-color: #ffffff; /* White background for better contrast */
-    margin-left: 280px; /* Offset for the fixed sidebar */
+    margin-left: 300px; /* Offset for the fixed sidebar */
     overflow-y: auto; /* Allow scrolling if content overflows */
+    transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
 }
 
 /* Home welcome section styling */
 .home-welcome {
-    margin-top: 30px; /* Increased space above the section */
+    margin-top: 30px; /* Space above the section */
 }
 
 .home-welcome h2 {
     margin-bottom: 15px; /* Space below the heading */
     font-size: 24px; /* Larger font size for headings */
+    color: #343a40; /* Dark color for better readability */
 }
 
 .home-welcome p {
     font-size: 18px; /* Slightly larger font size for text */
     line-height: 1.6; /* Increased line height for readability */
+    color: #495057; /* Slightly lighter text color for better contrast */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative; /* Make the sidebar relative */
+        height: auto; /* Allow the height to adjust */
+        box-shadow: none; /* Remove shadow for mobile view */
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove the left margin for mobile view */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        font-size: 14px; /* Smaller font size for very small screens */
+    }
+
+    nav ul li a {
+        font-size: 16px; /* Smaller font size for navigation items */
+    }
 }

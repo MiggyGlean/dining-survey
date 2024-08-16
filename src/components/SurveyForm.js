@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ThankYouModal from './ThankYouModal'; // Import the modal component
 import './SurveyForm.css'; // Import the CSS file
 
-const SurveyForm = ({ setResponses }) => {
+const SurveyForm = () => {
     const [formData, setFormData] = useState({
         q1: '',
         q2: '',
@@ -30,7 +30,7 @@ const SurveyForm = ({ setResponses }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setResponses(formData); // Store the responses in state
+        //setResponses(formData); // Store the responses in state
         setShowModal(true); // Show the modal
         setFormData({
             q1: '',
