@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dining-survey/static/css/main.d66d81b1.css",
+    "main.js": "/dining-survey/static/js/main.efe9baab.js",
+    "static/js/453.138c651b.chunk.js": "/dining-survey/static/js/453.138c651b.chunk.js",
+    "index.html": "/dining-survey/index.html",
+    "main.d66d81b1.css.map": "/dining-survey/static/css/main.d66d81b1.css.map",
+    "main.efe9baab.js.map": "/dining-survey/static/js/main.efe9baab.js.map",
+    "453.138c651b.chunk.js.map": "/dining-survey/static/js/453.138c651b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d66d81b1.css",
+    "static/js/main.efe9baab.js"
+  ]
+}
