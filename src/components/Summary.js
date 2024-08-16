@@ -1,7 +1,8 @@
+// Summary.js
 import React from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, BarElement, registerables } from 'chart.js';
-import './SummaryReport.css'; // Import the CSS file
+import './Summary.css'; // Import the CSS file for Summary component
 import { FaHome, FaChartPie, FaChartBar, FaCog } from 'react-icons/fa'; // Import icons
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, BarElement, ...registerables);
@@ -19,7 +20,7 @@ const questionLabels = {
     q10: 'How likely are you to recommend our dining services to other residents?'
 };
 
-// Dummy responses data
+// Dummy data for responses
 const dummyResponses = {
     q1: 'Very Satisfied',
     q2: 'Good',
@@ -30,38 +31,60 @@ const dummyResponses = {
     q7: 'Good',
     q8: 'Comfortable',
     q9: 'Satisfied',
-    q10: 'Likely'
+    q10: 'Likely',
+    q1: 'Satisfied',
+    q2: 'Good',
+    q3: 'Just Right',
+    q4: 'Very Satisfied',
+    q5: 'Good',
+    q6: 'Neutral',
+    q7: 'Good',
+    q8: 'Comfortable',
+    q9: 'Very Satisfied',
+    q10: 'Likely',
+    q1: 'Very Satisfied',
+    q2: 'Good',
+    q3: 'Just Right',
+    q4: 'Satisfied',
+    q5: 'Neutral',
+    q6: 'Neutral',
+    q7: 'Good',
+    q8: 'Comfortable',
+    q9: 'Satisfied',
+    q10: 'Likely',
 };
 
-const SummaryReport = ({ responses = dummyResponses }) => {
-    const generateSummary = (responses) => {
-        const summary = {};
-        
-        Object.keys(responses).forEach(question => {
-            if (!summary[question]) {
-                summary[question] = {};
-            }
-            const answer = responses[question];
-            if (answer) {
-                summary[question][answer] = (summary[question][answer] || 0) + 1;
-            }
+// Helper function to generate summary data
+const generateSummary = (responses) => {
+    const summary = {};
+
+    Object.keys(responses).forEach(question => {
+        if (!summary[question]) {
+            summary[question] = {};
+        }
+        const answer = responses[question];
+        if (answer) {
+            summary[question][answer] = (summary[question][answer] || 0) + 1;
+        }
+    });
+
+    return summary;
+};
+
+// Helper function to combine summary data for charts
+const combineSummary = (summary) => {
+    const combinedData = {};
+
+    Object.values(summary).forEach(questionSummary => {
+        Object.keys(questionSummary).forEach(answer => {
+            combinedData[answer] = (combinedData[answer] || 0) + questionSummary[answer];
         });
+    });
 
-        return summary;
-    };
+    return combinedData;
+};
 
-    const combineSummary = (summary) => {
-        const combinedData = {};
-        
-        Object.values(summary).forEach(questionSummary => {
-            Object.keys(questionSummary).forEach(answer => {
-                combinedData[answer] = (combinedData[answer] || 0) + questionSummary[answer];
-            });
-        });
-        
-        return combinedData;
-    };
-
+const Summary = ({ responses = dummyResponses }) => {
     const summary = generateSummary(responses);
     const combinedSummary = combineSummary(summary);
 
@@ -91,8 +114,15 @@ const SummaryReport = ({ responses = dummyResponses }) => {
     });
 
     return (
-        <div className="summary-container">
+        <div className="summary-page">
             <div className="sidebar">
+                <div className="logo-container">
+                    <img
+                        src="https://servingintel.com/wp-content/uploads/2023/07/servingintel.logo_.primary-300x120.png"
+                        alt="ServingIntel Logo"
+                        className="logo"
+                    />
+                </div>
                 <nav>
                     <ul>
                         <li><FaHome /> <a href="/admin">Home</a></li>
@@ -117,22 +147,21 @@ const SummaryReport = ({ responses = dummyResponses }) => {
                     </div>
                 </div>
                 <div className="response-info-container">
-                    <div className="response-info">
-                        {Object.keys(summary).map(questionKey => (
-                            <div key={questionKey} className="question-summary">
-                                <h2>Question {questionKey.replace('q', '')}: {questionLabels[questionKey]}</h2>
-                                {Object.keys(summary[questionKey]).map(answer => (
-                                    <p key={answer}>
-                                        {answer}: {summary[questionKey][answer]} response{summary[questionKey][answer] > 1 ? 's' : ''}
-                                    </p>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
+                    <h2>Response Summary</h2>
+                    {Object.keys(summary).map(questionKey => (
+                        <div key={questionKey} className="question-summary">
+                            <h3>Question {questionKey.replace('q', '')}: {questionLabels[questionKey]}</h3>
+                            {Object.keys(summary[questionKey]).map(answer => (
+                                <p key={answer}>
+                                    {answer}: {summary[questionKey][answer]} response{summary[questionKey][answer] > 1 ? 's' : ''}
+                                </p>
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
     );
 };
 
-export default SummaryReport;
+export default Summary;
